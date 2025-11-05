@@ -29,9 +29,8 @@ class Model:
         config = XttsConfig()
         config.load_json(os.path.join(model_path, "config.json"))
         self.model = Xtts.init_from_config(config)
-        # self.model.load_checkpoint(config, checkpoint_dir=model_path, eval=True)
         self.model.load_checkpoint(
-            config, checkpoint_dir=model_path, eval=True, use_deepspeed=True
+            config, checkpoint_dir=model_path, eval=True, use_deepspeed=False
         )
         self.model.to(device)
         # self.compiled_model = torch.compile(self.model.inference_stream)
